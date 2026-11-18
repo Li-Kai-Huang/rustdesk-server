@@ -1,0 +1,20 @@
+services:
+  hbbs:
+    image: rustdesk/rustdesk-server:1.1.14
+    container_name: rustdesk-hbbs
+    command: hbbs
+    volumes:
+      - ./data:/root
+    network_mode: "host"
+    restart: unless-stopped
+    depends_on:
+      - hbbr
+
+  hbbr:
+    image: rustdesk/rustdesk-server:1.1.14
+    container_name: rustdesk-hbbr
+    command: hbbr
+    volumes:
+      - ./data:/root
+    network_mode: "host"
+    restart: unless-stopped
